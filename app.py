@@ -13,63 +13,34 @@ st.set_page_config(
 )
 
 
-# ── Load user credentials and profiles ────────────────────────
-CREDENTIALS = dict(st.secrets["auth"])
-PROFILES = st.secrets.get("profile", {})
-
-# ── Login form ────────────────────────────────────────────────
-def login():
-    st.title("🔐 Login Required")
-
-    user = st.text_input("Username", key="username_input")
-    password = st.text_input("Password", type="password", key="password_input")
-
-    if st.button("Login", key="login_button"):
-        if user in CREDENTIALS and password == CREDENTIALS[user]:
-            st.session_state["authenticated"] = True
-            st.session_state["username"] = user
-            st.session_state["first_name"] = PROFILES.get(user, {}).get("first_name", user)
-        else:
-            st.error("❌ Invalid username or password")
-
-# ── Auth state setup ──────────────────────────────────────────
-if "authenticated" not in st.session_state:
-    st.session_state["authenticated"] = False
-
-# ── Login gate ────────────────────────────────────────────────
-if not st.session_state["authenticated"]:
-    login()
-    st.stop()
-
-# ── App begins after login ────────────────────────────────────
-
-st.sidebar.success(f"Welcome {st.session_state['first_name']}!")
-st.sidebar.button("Logout", on_click=lambda: st.session_state.update(authenticated=False))
-
-# Spacer to push the link to the bottom (optional tweak for better placement)
-st.sidebar.markdown("<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>", unsafe_allow_html=True)
-
 # ---------------Sidebar
 from utils import apply_style_and_logo
+apply_style_and_logo()
 
-
+st.set_page_config(page_title="WT APPLICATIONS PLAT", page_icon="🚀", layout="wide")
+# Spacer to push the link to the bottom (optional tweak for better placement)
+#st.sidebar.markdown("<br>", unsafe_allow_html=True)
 # Company website link
 st.sidebar.markdown(
-    '<p style="text-align:center;">'
-    '<a href="https://www.wavetransition.com" target="_blank">🌐 Visit WaveTransition</a>'
-    '</p>',
+    '''
+    <p style="text-align:left; font-size: 1.05rem; color: #009fb7;">
+        <a href="https://www.wavetransition.com" target="_blank" style="color: #009fb7; text-decoration: none;">
+            🌐 Visit WaveTransition
+        </a>
+    </p>
+    ''',
     unsafe_allow_html=True
 )
 
-st.set_page_config(page_title="WT APPLICATIONS PLAT", page_icon="🚀", layout="wide")
+
 #st.image("schema.svg", use_container_width=True)
 # ----------------------------
 # 1) CONFIG: categories + sample data
 # ----------------------------
 CATEGORY_META = {
-    "KDM": {"label": "KDM", "color": "#2563eb"},  # blue
-    "DDI": {"label": "DDI", "color": "#059669"},  # green
-    "CBA": {"label": "CBA", "color": "#d97706"},  # amber
+    "KDM": {"label": "KDM - Knowledge & Data Mapping", "color": "#93c5fd"},  # pastel blue
+    "DDI": {"label": "DDI - Data Driven Insights", "color": "#6ee7b7"},  # pastel green
+    "CBA": {"label": "CBA - Collaborative Business Applications", "color": "#fcd34d"},  # pastel amber
 }
 
 # Minimal SVGs for demo (replace with your own)
@@ -112,8 +83,6 @@ CBA_CHART="""
   </g>
 </svg>
 """
-
-
 
 
 SVG_APERTURE = """<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" id="Customer-Support-Setting--Streamline-Sharp" height="24" width="24">
@@ -164,7 +133,7 @@ APPS = [
     {
         "name": "Fair Fuel Comparison",
         "category": "DDI",
-        "tech": "Python - Streamlit",
+        "tech": "Python Streamlit",
         "icon_svg": DDI_CHART,
         "description": "Experiment with elasticity curves; fit, compare, and share.",
         "url": "https://wtfuelfaircomparison.streamlit.app/",
@@ -172,9 +141,9 @@ APPS = [
     {
         "name": "NewsRanker",
         "category": "KDM",
-        "tech": "Python - Streamlit",
+        "tech": "Python Streamlit",
         "icon_svg": KDM_CHART,
-        "description": "newsletter on public websites and rss feeds provider boosted by a Machine Learning approach to rank the importance of the news",
+        "description": "Newsletter based on public websites and rss feeds provider boosted by a Machine Learning approach to rank the importance of the news",
         "url": "https://wtnewsranker.streamlit.app/",
     },
     {
@@ -182,118 +151,190 @@ APPS = [
         "category": "DDI",
         "tech": "Python Dash",
         "icon_svg": DDI_CHART,
-        "description": "Live KPI monitor with thresholds and weekly digest.",
+        "description": "Agentic Analyst for Deep Financial & Market Exploration Across Energy Transition Supply Chains",
         "url": "https://wtagenticbusinessanalyst-8e0469aca662.herokuapp.com/",
     },
+    {
+        "name": "Company Search",
+        "category": "DDI",
+        "tech": "Python Streamlit",
+        "icon_svg": DDI_CHART,
+        "description": "Fast, Targeted Search Across Our Proprietary Company Database",
+        "url": "https://wtcompaniesearch.streamlit.app/",
+    },
+    
     {
         "name": "EU Decarbon Policy",
         "category": "KDM",
         "tech": "Python Dash",
         "icon_svg": KDM_CHART,
-        "description": "delivers a comprehensive, technical view of the EU’s decarbonization update  and legislative framework.",
+        "description": "AI-Powered Conversations on Europe’s Path to Net Zero",
         "url": "https://wteudecarbonpolicy-e584e739c8f7.herokuapp.com/s",
     },
+        
+    
+    
     
      {
         "name": "GEO EU Data Hub",
         "category": "CBA",
-        "tech": "Python QGIS",
+        "tech": "Python Qgis",
         "icon_svg": CBA_CHART,
-        "description": "QGIS-based platform that consolidates diverse geospatial datasets on EU energy and infrastructure into a centralized repository",
-        "url": "",
+        "description": "Integrating EU Energy & Infrastructure Data into One Geospatial Hub",
+        "url": "static/WT_EU_GEO_DATA_HUB.png",
     },
     
     {
         "name": "BiomethanIT",
         "category": "CBA",
-        "tech": "Python - Streamlit",
+        "tech": "Python Streamlit",
         "icon_svg": CBA_CHART,
-        "description": "gather data on Bioethane in Italy providing alos a business plan",
-        "url": "",
+        "description": "In-Depth Overview of the Italian Biomethane Sector, Backed by Data and Business Modeling",
+        "url": "https://wtbiomethanit.streamlit.app/",
     },
+  
+      {
+        "name": "Fleet DecarbonAI",
+        "category": "CBA",
+        "tech": "Python Streamlit",
+        "icon_svg": CBA_CHART,
+        "description": "Data and AI for Greener Road Logistics Across Europe",
+        "url": "static/WT_EU_GEO_DATA_HUB.png",
+    },  
     
     
-
-
-
+    
+    
     
 ]
-
-
-
 
 
 # ----------------------------
 # 2) STYLE
 # ----------------------------
 st.markdown("""
-<style>
-:root {
-  --card-bg: rgba(255,255,255,0.6);
-  --text: var(--foreground-color, #111827);
-}
-@media (prefers-color-scheme: dark) {
-  :root { --card-bg: rgba(255,255,255,0.06); --text: #e5e7eb; }
-}
-.card {
-  background: var(--card-bg);
-  border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 16px;
-  padding: 16px;
-  height: 100%;
-}
-.card h3 {
-  margin: 0 0 6px 0; font-size: 1.05rem; line-height: 1.35;
-}
-.card .desc {
-  color: var(--text); opacity: .85; font-size: 0.94rem; margin: 6px 0 12px 0;
-}
-.badge {
-  display:inline-flex; align-items:center; gap:.4rem;
-  padding:4px 10px; border-radius: 999px; font-size: .78rem; font-weight: 600;
-  background: rgba(0,0,0,0.06);
-}
-.row { display:flex; gap: 16px; }
-.iconwrap {
-  display:flex; align-items:center; justify-content:center;
-  width:48px; height:48px; border-radius:12px; background: rgba(0,0,0,.05);
-}
-.iconwrap svg { color: currentColor; }
-.meta { display:flex; align-items:center; gap:10px; margin-bottom:10px;}
-.kicker { font-size:.78rem; opacity:.75; }
-.button {
-  text-decoration:none; padding: 8px 12px; border-radius: 10px; font-weight:600;
-  border: 1px solid rgba(0,0,0,.12);
-}
-.button:hover { filter: brightness(1.05); }
-.grid {
-  display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-}
-@media (min-width: 800px) {
-  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (min-width: 1200px) {
-  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
-.cat-header {
-  display:flex; align-items:center; justify-content:space-between;
-  margin: 4px 0 12px 0;
-}
-.count { font-size:.85rem; opacity:.7; }
-.tech-chip {
-  font-size:.72rem; padding: 4px 8px; border-radius: 999px; 
-  background: rgba(0,0,0,.06); margin-left: 6px;
-}
-</style>
+    <style>
+    :root {
+      --card-bg: rgba(0, 47, 77, 0.8); /* derived from secondaryBackgroundColor */
+      --text: #ededf1; /* from your theme */
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --card-bg: rgba(0, 47, 77, 0.9); --text: #ededf1; }
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 20px;
+      height: 100%;
+      color: var(--text);
+    }
+    .card h3 {
+      margin: 0 0 8px 0;
+      font-size: 1.2rem;
+      line-height: 1.5;
+    }
+    .card .desc {
+      color: var(--text);
+      opacity: 0.9;
+      font-size: 1rem;
+      margin: 8px 0 16px 0;
+    }
+    .badge {
+      display:inline-flex;
+      align-items:center;
+      gap:.4rem;
+      padding:4px 12px;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      background: rgba(255,255,255,0.1);
+    }
+    .row { display:flex; gap: 16px; }
+    .iconwrap {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:48px;
+      height:48px;
+      border-radius:12px;
+      background: rgba(255,255,255,0.1);
+    }
+    .iconwrap svg { color: currentColor; }
+    .meta {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:10px;
+    }
+    .kicker {
+      font-size:.85rem;
+      opacity:.85;
+      color: var(--text);
+    }
+    .button {
+      text-decoration:none;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight:600;
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .button:hover {
+      filter: brightness(1.1);
+    }
+    .grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+    @media (min-width: 800px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1200px) {
+      .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    .cat-header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin: 4px 0 12px 0;
+    }
+    .count {
+      font-size: .9rem;
+      opacity: .85;
+      color: var(--text);
+    }
+    .tech-chip {
+      font-size:.78rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.1);
+      margin-left: 6px;
+      color: var(--text);
+    }
+    </style>
 """, unsafe_allow_html=True)
 
 # ----------------------------
 # 3) HEADER & CONTROLS
 # ----------------------------
 st.title("WT Applications Platform Hub")
-st.caption("A simple home to browse all our web applications by category.")
+
+st.markdown("""
+    <style>
+    .custom-caption {
+        font-size: 3.0rem;  /* Adjust size */
+        font-weight: 800;
+        color: #20c997;  /* Match your theme text color */
+        opacity: 0.9;
+        margin-top: -100px;
+    }
+    </style>
+    <p class="custom-caption">Your Gateway to Our Business Applications</p>
+""", unsafe_allow_html=True)
+#st.caption("Your Gateway to Our Business Applications")
 
 left, right = st.columns([3, 2])
 with left:
@@ -328,7 +369,7 @@ for cat_key in ["KDM", "DDI", "CBA"]:
     st.markdown(
         f"""
         <div class="cat-header">
-            <div class="badge" style="background:{color}1a; color:{color}; border: 1px solid {color}40;">
+            <div class="badge" style="background:{color}1a; color:{color}; border: 1rem solid {color}40;">
                 <span>●</span> {label}
             </div>
             <div class="count">{len(items)} app(s)</div>
@@ -344,9 +385,18 @@ for cat_key in ["KDM", "DDI", "CBA"]:
     # Grid of cards
     st.markdown('<div class="grid">', unsafe_allow_html=True)
     for app in items:
-        title_link = f'<a href="{app["url"]}" target="_blank" class="button" style="border-color:{color}40;">Open app ↗</a>'
+        #title_link = f'<a href="{app["url"]}" target="_blank" class="button" style="border-color:{color}40;">Open app ↗</a>'
         # safe short description for consistent height
-        desc = shorten(app["description"], width=140, placeholder="…")
+        
+        
+        if app["url"].endswith((".png", ".jpg", ".jpeg", ".webp")):
+          title_link = f'<img src="{app["url"]}" alt="No Link - Local" style="max-height:160px; border-radius:10px; margin-left:10px;">'
+        else:
+          title_link = f'<a href="{app["url"]}" target="_blank" class="button" style="border-color:{color}40;">Open app ↗</a>'
+        
+               
+        
+        desc = shorten(app["description"], width=250, placeholder="…")
         icon = app["icon_svg"]
 
         st.markdown(
