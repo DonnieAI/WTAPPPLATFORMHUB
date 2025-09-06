@@ -115,7 +115,7 @@ SVG_GRID = """<svg viewBox="0 0 24 24" width="40" height="40" fill="none" xmlns=
 
 APPS = [
     {
-        "name": "Advanced Knoweldge Repository",
+        "name": "Advanced Knowledge Repository",
         "category": "KDM",
         "tech": "Python Dash",
         "icon_svg": KDM_CHART,
