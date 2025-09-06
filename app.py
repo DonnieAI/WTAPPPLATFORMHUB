@@ -143,7 +143,7 @@ APPS = [
         "category": "KDM",
         "tech": "Python Streamlit",
         "icon_svg": KDM_CHART,
-        "description": "Newsletter based on public websites and rss feeds provider boosted by a Machine Learning approach to rank the importance of the news",
+        "description": "Newsletter aggregating content from public websites and RSS feeds, powered by a machine-learning approach to rank the importance of news",
         "url": "https://wtnewsranker.streamlit.app/",
     },
     {
@@ -174,7 +174,6 @@ APPS = [
         
     
     
-    
      {
         "name": "GEO EU Data Hub",
         "category": "CBA",
@@ -198,13 +197,11 @@ APPS = [
         "category": "CBA",
         "tech": "Python Streamlit",
         "icon_svg": CBA_CHART,
-        "description": "Data and AI for Greener Road Logistics Across Europe",
+        "description": "Driving Sustainable Road Logistics in Europe with AI-Powered Data",
         "url": "static/WT_EU_GEO_DATA_HUB.png",
     },  
     
-    
-    
-    
+  
     
 ]
 
