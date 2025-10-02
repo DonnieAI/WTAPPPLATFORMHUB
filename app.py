@@ -202,6 +202,17 @@ APPS = [
     },  
     
   
+        {
+        "name": "Carbon Scope Compass",
+        "category": "DDI",
+        "tech": "Python Streamlit",
+        "icon_svg": DDI_CHART,
+        "description": "Driving Sustainable Road Logistics in Europe with AI-Powered Data",
+        "url": "https://wtcarbonscopecompass.streamlit.app/",
+    },  
+    
+  
+  
     
 ]
 
