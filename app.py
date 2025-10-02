@@ -207,7 +207,7 @@ APPS = [
         "category": "DDI",
         "tech": "Python Streamlit",
         "icon_svg": DDI_CHART,
-        "description": "Driving Sustainable Road Logistics in Europe with AI-Powered Data",
+        "description": "Gather and analyze CO2 price impact on companies",
         "url": "https://wtcarbonscopecompass.streamlit.app/",
     },  
     
