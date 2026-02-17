@@ -223,7 +223,7 @@ APPS = [
     
             {
         "name": "P2Xplorer (BETA)",
-        "category": "CBA" 
+        "category": "CBA" ,
         "tech": "Python Streamlit",
         "icon_svg": CBA_CHART,
         "description": "Analyse the most updated available energy data related to countries and region",
