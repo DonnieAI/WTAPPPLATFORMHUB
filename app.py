@@ -212,6 +212,36 @@ APPS = [
     },  
     
   
+          {
+        "name": "Enerlytics",
+        "category": "DDI",
+        "tech": "Python Streamlit",
+        "icon_svg": DDI_CHART,
+        "description": "Analyse the most updated available energy data related to countries and region",
+        "url": "https://wtenerlytics.streamlit.app/",
+    },  
+    
+            {
+        "name": "P2Xplorer (BETA)",
+        "category": "CBA",git 
+        "tech": "Python Streamlit",
+        "icon_svg": CBA_CHART,
+        "description": "Analyse the most updated available energy data related to countries and region",
+        "url": "https://wtp2xplorer.streamlit.app/",
+    }, 
+  
+  
+      {
+        "name": "Fleet Decarbon TCO",
+        "category": "CBA",
+        "tech": "Python Streamlit",
+        "icon_svg": CBA_CHART,
+        "description": "Dynamic TCO Calculator to carry out a decarbonization check up for Heavy Duty Roads Logistics",
+        "url": "https://wtfleetdecarbontco.streamlit.app/",
+    },
+  
+  
+  
   
     
 ]
